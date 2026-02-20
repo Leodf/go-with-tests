@@ -1,14 +1,14 @@
-package main
+package hello
 
 import "fmt"
 
 const (
 	spanish = "Spanish"
- 	french = "French"
+	french  = "French"
 
- 	englishHelloPrefix = "Hello, "
- 	spanishHelloPrefix = "Hola, "
- 	frenchHelloPrefix = "Bonjour, "
+	englishHelloPrefix = "Hello, "
+	spanishHelloPrefix = "Hola, "
+	frenchHelloPrefix  = "Bonjour, "
 )
 
 func greetingPrefix(language string) (prefix string) {
