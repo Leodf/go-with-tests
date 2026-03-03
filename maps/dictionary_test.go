@@ -48,6 +48,17 @@ func assertStrings(t testing.TB, got, want string) {
 	}
 }
 
+func TestUpdate (t *testing.T) {
+	word := "test"
+	definition := "this is just a test"
+	dictionary := Dictionary{word: definition}
+	newdefinition := "new definition"
+
+	dictionary.Update(word, newdefinition)
+
+	assertDefinition(t, dictionary, word, newdefinition)
+}
+
 func assertError(t testing.TB, got, want error) {
 	t.Helper()
 	if got != want {
