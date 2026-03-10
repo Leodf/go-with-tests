@@ -9,7 +9,7 @@ import (
 
 const (
 	finalWord = "Go!"
-	countDownStart = 3
+	countdownStart = 3
 )
 
 type Sleeper interface {
@@ -23,12 +23,23 @@ func (d *DefaultSleeper) Sleep() {
 }
 
 func Countdown(out io.Writer, sleeper Sleeper) {
-	for i := countDownStart; i > 0; i-- {
-		fmt.Fprintln(out, i)
+	for i := countdownStart; i > 0; i-- {
 		sleeper.Sleep()
+	}
+
+	for i := countdownStart; i > 0; i-- {
+		fmt.Fprintln(out, i)
 	}
 	fmt.Fprint(out, finalWord)
 }
+
+// func Countdown(out io.Writer, sleeper Sleeper) {
+// 	for i := countdownStart; i > 0; i-- {
+// 		fmt.Fprintln(out, i)
+// 		sleeper.Sleep()
+// 	}
+// 	fmt.Fprint(out, finalWord)
+// }
 
 func main() {
 	sleeper := &DefaultSleeper{}
