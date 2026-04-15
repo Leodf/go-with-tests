@@ -13,7 +13,16 @@ func TestWalk(t *testing.T) {
 		ExpectedCalls []string
 	}{
 		{
-			Name: "struct with one field", Input: struct{ Name string }{Name: "Chris"}, ExpectedCalls: []string{"Chris"},
+			Name:          "struct with one field",
+			Input:         struct{ Name string }{Name: "Chris"},
+			ExpectedCalls: []string{"Chris"},
+		},
+		{
+			Name: "struct with two string fields",
+			Input: struct {
+				Name string
+				City string
+			}{Name: "Chris", City: "London"}, ExpectedCalls: []string{"Chris", "London"},
 		},
 	}
 
@@ -23,10 +32,6 @@ func TestWalk(t *testing.T) {
 			walk(test.Input, func(input string) {
 				got = append(got, input)
 			})
-
-			if len(got) != 1 {
-				t.Errorf("wrong number of function calls, got %d want %d", len(got), 1)
-			}
 
 			if !reflect.DeepEqual(got, test.ExpectedCalls) {
 				t.Errorf("got %v, want %v", got, test.ExpectedCalls)
